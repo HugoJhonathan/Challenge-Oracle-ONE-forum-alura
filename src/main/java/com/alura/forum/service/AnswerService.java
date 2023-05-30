@@ -29,4 +29,13 @@ public class AnswerService extends CrudService<Answer, Long> {
     public List<Answer> findAllByTopicId(Long id) {
         return repository.findAllByTopicId(id);
     }
+
+    public void setAnswerSolution(Long answerId) {
+        if (!repository.existsById(answerId)) {
+            throw new IllegalArgumentException("Answer with id " + answerId + " not found!");
+        }
+        Answer answer = repository.getReferenceById(answerId);
+        answer.getTopic().setAnswerSolution(answer);
+    }
+
 }

@@ -51,11 +51,5 @@ public class TopicController extends CrudController<Topic, Long, TopicDTO, Topic
         return ResponseEntity.ok(answer1);
     }
 
-    @Transactional
-    @PostMapping("/{topicId}/answer_solution/{answerId}")
-    public ResponseEntity<String> answerSolution(@PathVariable("topicId") Long topicId, @PathVariable("answerId") Long answerId) {
-        topicService.setAnswerSolution(topicId, answerId);
-        return ResponseEntity.ok().build();
-    }
 
 }

@@ -3,7 +3,7 @@ package com.alura.forum.model.projections;
 import com.alura.forum.model.entity.enums.AnswerStatus;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @JsonPropertyOrder({"id", "title", "createdAt", "status", "statusName", "category", "subcategory", "course"})
 public interface TopicSlimDTO {
@@ -11,7 +11,7 @@ public interface TopicSlimDTO {
 
     String getTitle();
 
-    LocalDateTime getCreatedAt();
+    Instant getCreatedAt();
 
     Integer getStatus();
 
@@ -25,5 +25,5 @@ public interface TopicSlimDTO {
 
     CourseSlim getCourse();
 
-  
+
 }

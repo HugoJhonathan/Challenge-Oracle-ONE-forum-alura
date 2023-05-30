@@ -5,6 +5,7 @@ import com.alura.forum.model.entity.Answer;
 import com.alura.forum.model.entity.Topic;
 import com.alura.forum.model.projections.TopicCompleteDTO;
 import com.alura.forum.model.projections.TopicSlimDTO;
+import com.alura.forum.repository.AnswerRepository;
 import com.alura.forum.repository.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class TopicService extends CrudService<Topic, Long> {
     private TopicRepository topicRepository;
 
     @Autowired
-    private AnswerService answerService;
+    private AnswerRepository answerRepository;
 
     @Override
     protected Topic editEntity(Topic oldEntity, Topic entityToSave) {
@@ -46,23 +47,12 @@ public class TopicService extends CrudService<Topic, Long> {
                 .orElseThrow(() -> new RuntimeException("Topic with id " + id + " not found!"));
     }
 
-    public void setAnswerSolution(Long topicId, Long answerId) {
-        if (!existsById(topicId)) {
-            throw new IllegalArgumentException("Topic with id " + topicId + " not found!");
-        }
-        if (!answerService.existsById(answerId)) {
-            throw new IllegalArgumentException("Answer with id " + answerId + " not found!");
-        }
-        Topic topic = getReferenceById(topicId);
-        Answer answer = answerService.getReferenceById(answerId);
-        topic.setAnswerSolution(answer);
-    }
 
     public Answer addAnswerToPost(Answer answer, Long idPost) {
         Topic topic = getReferenceById(idPost);
         answer.setTopic(topic);
         answer.setCreatedAt(LocalDateTime.now());
-        return answerService.save(answer);
+        return answerRepository.save(answer);
     }
 
 }
