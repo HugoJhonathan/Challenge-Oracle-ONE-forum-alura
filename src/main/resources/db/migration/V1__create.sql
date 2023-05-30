@@ -27,7 +27,7 @@ CREATE TABLE answer(
     id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     message TEXT NOT NULL,
     created_at TIMESTAMP NOT NULL,
-    fk_author BIGINT NOT NULL,
+    fk_author BIGINT NULL,
     FOREIGN KEY (fk_author) REFERENCES user(id)
 );
 
@@ -39,10 +39,14 @@ CREATE TABLE topic(
     status ENUM('1','2','3','4'),
     fk_category INT NOT NULL,
     fk_subcategory INT NULL,
-    fk_course INT NOT NULL,
+    fk_course INT NULL,
     fk_answer_solution BIGINT NULL,
     FOREIGN KEY (fk_category) REFERENCES category(id),
     FOREIGN KEY (fk_subcategory) REFERENCES subcategory(id),
     FOREIGN KEY (fk_course) REFERENCES course(id),
     FOREIGN KEY (fk_answer_solution) REFERENCES answer(id)
 );
+
+ALTER TABLE answer
+    ADD COLUMN fk_topic BIGINT NOT NULL,
+ADD CONSTRAINT fk_answer_topic FOREIGN KEY (fk_topic) REFERENCES topic(id);
