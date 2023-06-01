@@ -1,7 +1,6 @@
 package com.alura.forum.model.projections;
 
 import com.alura.forum.model.entity.enums.AnswerStatus;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.time.Instant;
@@ -26,7 +25,6 @@ public interface TopicSlimDTO {
 
     CourseSlim getCourse();
 
-    @JsonProperty("author")
-    UserSlim getUser();
+    UserSlim getAuthor();
 
 }

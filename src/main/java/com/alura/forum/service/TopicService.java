@@ -10,11 +10,12 @@ import com.alura.forum.repository.AnswerRepository;
 import com.alura.forum.repository.TopicRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Service
 public class TopicService extends CrudService<Topic, Long> {
@@ -37,14 +38,13 @@ public class TopicService extends CrudService<Topic, Long> {
 
     @Override
     public Topic save(Topic entity) {
-        entity.setCreatedAt(LocalDateTime.now());
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        entity.setUser(user);
+        entity.setAuthor(user);
         return super.save(entity);
     }
 
-    public List<TopicSlimDTO> findAllSlim() {
-        return topicRepository.findAllBy();
+    public Page<TopicSlimDTO> findAllSlim(Pageable pageable) {
+        return topicRepository.findAllBy(pageable);
     }
 
     public TopicCompleteDTO findComplete(Long id) {

@@ -58,7 +58,7 @@ public class TopicConverter implements CrudConverter<Topic, TopicDTO, TopicRespo
                 categoryConverter.entityToDTOResponse(entity.getCategory()),
                 subcategoryConverter.entityToDTOResponse(entity.getSubcategory()),
                 courseConverter.entityToDTOResponse(entity.getCourse()),
-                entity.getUser().getName()
+                entity.getAuthor().getName()
         );
     }
 }

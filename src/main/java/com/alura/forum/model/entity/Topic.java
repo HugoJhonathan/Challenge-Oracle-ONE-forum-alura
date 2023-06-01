@@ -22,7 +22,7 @@ public class Topic implements CrudDomain<Long> {
     private Long id;
     private String title;
     private String message;
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
     private Integer status = 1;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -45,7 +45,7 @@ public class Topic implements CrudDomain<Long> {
 
     @ManyToOne
     @JoinColumn(name = "fk_user")
-    private User user;
+    private User author;
 
     public void setAnswerSolution(Answer answerSolution) {
         this.answerSolution = answerSolution;

@@ -7,11 +7,11 @@ import com.alura.forum.model.entity.User;
 import com.alura.forum.repository.AnswerRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class AnswerService extends CrudService<Answer, Long> {
@@ -27,19 +27,19 @@ public class AnswerService extends CrudService<Answer, Long> {
 
     @Override
     public Answer save(Answer entity) {
-//        entity.setCreatedAt(LocalDateTime.now());
         return super.save(entity);
     }
 
-    public List<Answer> findAllByTopicId(Long id) {
-        return repository.findAllByTopicId(id);
+    public Page<Answer> findAllByTopicId(Long id, Pageable pageable) {
+        return repository.findAllByTopicId(id, pageable);
     }
 
     public void setAnswerSolution(Long answerId) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Answer answer = getReferenceByIdIfExist(answerId);
         Topic topic = answer.getTopic();
-        if (!topic.getUser().equals(user)) throw new AccessDeniedException("You do not have access to this resource!");
+        if (!topic.getAuthor().equals(user))
+            throw new AccessDeniedException("You do not have access to this resource!");
         topic.setAnswerSolution(answer);
     }
 

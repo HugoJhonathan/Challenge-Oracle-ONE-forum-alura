@@ -13,11 +13,11 @@ import com.alura.forum.service.AnswerService;
 import com.alura.forum.service.TopicService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/topics")
@@ -29,8 +29,8 @@ public class TopicController extends CrudController<Topic, Long, TopicDTO, Topic
     private AnswerConverter answerConverter;
 
     @Override
-    public ResponseEntity<List<TopicSlimDTO>> findAll() {
-        return ResponseEntity.ok(topicService.findAllSlim());
+    public ResponseEntity<Page<TopicSlimDTO>> findAll(Pageable pageable) {
+        return ResponseEntity.ok(topicService.findAllSlim(pageable));
     }
 
     @Override
@@ -39,8 +39,8 @@ public class TopicController extends CrudController<Topic, Long, TopicDTO, Topic
     }
 
     @GetMapping("/{id}/answers")
-    public ResponseEntity<List<Answer>> findAnswersByTopic(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(answerService.findAllByTopicId(id));
+    public ResponseEntity<Page<Answer>> findAnswersByTopic(@PathVariable("id") Long id, Pageable pageable) {
+        return ResponseEntity.ok(answerService.findAllByTopicId(id, pageable));
     }
 
     @Transactional

@@ -3,6 +3,7 @@ package com.alura.forum.core.crud;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public abstract class CrudController<E extends CrudDomain<ID>, ID, DTOCAD, DTORE
     protected CrudConverter<E, DTOCAD, DTORES> converter;
 
     @GetMapping
-    public ResponseEntity<?> findAll() {
+    public ResponseEntity<?> findAll(Pageable pageable) {
         List<E> listEntity = service.findAll();
         List<DTORES> listDTORes = listEntity
                 .stream()

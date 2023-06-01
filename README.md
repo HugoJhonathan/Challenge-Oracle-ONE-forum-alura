@@ -15,11 +15,15 @@
 
 Bem-vindo ao nosso mais recente desafio Challenge Back End!
 
-O Fórum Alura é um lugar onde todos os alunos da plataforma alura podem colocar suas perguntas sobre determinados cursos. Este lugar mágico está cheio de muita aprendizagem e colaboração entre alunos, professores e moderadores.
+O Fórum Alura é um lugar onde todos os alunos da plataforma alura podem colocar suas perguntas sobre determinados
+cursos. Este lugar mágico está cheio de muita aprendizagem e colaboração entre alunos, professores e moderadores.
 
-Já sabemos para que serve o fórum e sabemos sua aparência, mas sabemos como funciona por trás? Isto é, onde se armazenam as informações? Como se tratam esses dados para que se relacione um tópico com uma resposta, ou como se relacionam os usuários com as respostas de um tópico?
+Já sabemos para que serve o fórum e sabemos sua aparência, mas sabemos como funciona por trás? Isto é, onde se armazenam
+as informações? Como se tratam esses dados para que se relacione um tópico com uma resposta, ou como se relacionam os
+usuários com as respostas de um tópico?
 
-Esse é o nosso desafio, vamos replicar esse processo no nível do back end e, para isso, criaremos uma API REST usando Spring.
+Esse é o nosso desafio, vamos replicar esse processo no nível do back end e, para isso, criaremos uma API REST usando
+Spring.
 
 Nossa API se concentrará especificamente nos tópicos, e deve permitir aos usuários:
 
@@ -29,7 +33,8 @@ Nossa API se concentrará especificamente nos tópicos, e deve permitir aos usu�
 - Atualizar um tópico
 - Eliminar um tópico
 
-É o que conhecemos normalmente como CRUD (CREATE, READ, UPDATE, DELETE) e é muito parecido com o que desenvolvemos no Hotel Alura, mas agora usando um framework que facilitará muito o nosso trabalho.
+É o que conhecemos normalmente como CRUD (CREATE, READ, UPDATE, DELETE) e é muito parecido com o que desenvolvemos no
+Hotel Alura, mas agora usando um framework que facilitará muito o nosso trabalho.
 
 Ao final de nosso processo teremos uma API REST com as seguintes funcionalidades:
 
@@ -42,22 +47,22 @@ Ao final de nosso processo teremos uma API REST com as seguintes funcionalidades
 
 ## Resultado
 
-
-
 <img src="https://i.imgur.com/V4kqfX5.png">
 
 ### Principais endpoints
 
-| Method | URL | Result |
-|--------|------|-------|
-|**[GET](#)**     | `http://localhost:8080/posts`                         | Lista todos os Tópicos |
-|**[GET](#)**     | `http://localhost:8080/posts/id`                      | Lista um Tópico específico detalhado |
-|**[POST](#)**    | `http://localhost:8080/posts`                         | Cadastra um Tópico |
-|**[PUT](#)**     | `http://localhost:8080/posts/id`                      | Atualiza um Tópico |
-|**[DELETE](#)**  | `http://localhost:8080/posts/id`                      | Deleta um Tópico |
-|**[GET](#)**     | `http://localhost:8080/posts/id/answers`              | Lista todas as Respostas de um Tópico |
-|**[POST](#)**    | `http://localhost:8080/posts/id/answers`              | Cadastra uma Resposta em um Tópico |
-|**[POST](#)**    | `http://localhost:8080/answers/id/answer_solution`    | Define uma Resposta como a solução do Tópico |
+| Method          | URL                                                | Result                                       |
+|-----------------|----------------------------------------------------|----------------------------------------------|
+| **[GET](#)**    | `http://localhost:8080/posts`                      | Lista todos os Tópicos                       |
+| **[GET](#)**    | `http://localhost:8080/posts/id`                   | Lista um Tópico específico detalhado         |
+| **[POST](#)**   | `http://localhost:8080/posts`                      | Cadastra um Tópico                           |
+| **[PUT](#)**    | `http://localhost:8080/posts/id`                   | Atualiza um Tópico                           |
+| **[DELETE](#)** | `http://localhost:8080/posts/id`                   | Deleta um Tópico                             |
+| **[GET](#)**    | `http://localhost:8080/posts/id/answers`           | Lista todas as Respostas de um Tópico        |
+| **[POST](#)**   | `http://localhost:8080/posts/id/answers`           | Cadastra uma Resposta em um Tópico           |
+| **[POST](#)**   | `http://localhost:8080/answers/id/answer_solution` | Define uma Resposta como a solução do Tópico |
+| **[POST](#)**   | `http://localhost:8080/api/login`                  | Faz login para receber JWT                   |
+| **[POST](#)**   | `http://localhost:8080/api/register`               | Cadastra um novo usuário                     |
 
 <br>
 
@@ -66,7 +71,8 @@ Ao final de nosso processo teremos uma API REST com as seguintes funcionalidades
 - Linguagem: Java
 - IDE: <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>
 - Framework: Spring
-- Spring Data JPA, Spring Boot Starter Web, Mysql, Flyway, Lombok, Spring Validation, Spring Boot Security, <a href="https://github.com/auth0/java-jwt">java-jwt</a>
+- Spring Data JPA, Spring Boot Starter Web, Mysql, Flyway, Lombok, Spring Validation, Spring Boot
+  Security, <a href="https://github.com/auth0/java-jwt">java-jwt</a>
 
 <br><br>
 [<img align="left" height="50" margin="10" src="https://i.imgur.com/RYYUpCK.png">](https://www.oracle.com/br/education/oracle-next-education/)
