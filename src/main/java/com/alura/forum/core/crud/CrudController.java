@@ -61,9 +61,7 @@ public abstract class CrudController<E extends CrudDomain<ID>, ID, DTOCAD, DTORE
     @Transactional
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") ID id) {
-        if (!service.existsById(id)) {
-            throw new EntityNotFoundException("ID not found: " + id);
-        }
+        if (!service.existsById(id)) throw new EntityNotFoundException("Resource with id " + id + " not exist!");
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }

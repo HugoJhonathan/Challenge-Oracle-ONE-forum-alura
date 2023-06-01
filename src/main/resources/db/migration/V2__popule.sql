@@ -75,10 +75,3 @@ VALUES ("Java OO: entendendo a Orientação a Objetos", 7),
        ("Mocks em Java: conhecendo o Mockito", 7),
        ("TDD e Java: testes automatizados com JUnit", 7);
 
-INSERT INTO topic (title, message, status, fk_category, fk_subcategory, fk_course, fk_answer_solution)
-VALUES ("title", "message", 2, 2, 1, 1, null),
-       ("title2", "message2", 3, 2, 1, 1, null);
-
-INSERT INTO answer (message, fk_author, fk_topic)
-values ("mensagem", null, 1),
-       ("mensagem2", null, 1);

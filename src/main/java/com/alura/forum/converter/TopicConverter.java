@@ -32,9 +32,8 @@ public class TopicConverter implements CrudConverter<Topic, TopicDTO, TopicRespo
         Topic topic = new Topic();
         topic.setTitle(dtocad.getTitle());
         topic.setMessage(dtocad.getMessage());
-
         if (dtocad.getCourseID() != null) {
-            Course course = courseService.getReferenceById(dtocad.getCourseID());
+            Course course = courseService.getReferenceByIdIfExist(dtocad.getCourseID());
             Subcategory subcategory = course.getSubcategory();
             Category category = subcategory.getCategory();
             topic.setCourse(course);
@@ -42,11 +41,10 @@ public class TopicConverter implements CrudConverter<Topic, TopicDTO, TopicRespo
             topic.setCategory(category);
         } else {
             if (dtocad.getSubcategoryId() != null)
-                topic.setSubcategory(subcategoryService.getReferenceById(dtocad.getSubcategoryId()));
+                topic.setSubcategory(subcategoryService.getReferenceByIdIfExist(dtocad.getSubcategoryId()));
             if (dtocad.getCategoryId() != null)
-                topic.setCategory(categoryService.getReferenceById(dtocad.getCategoryId()));
+                topic.setCategory(categoryService.getReferenceByIdIfExist(dtocad.getCategoryId()));
         }
-
         return topic;
     }
 
@@ -59,6 +57,8 @@ public class TopicConverter implements CrudConverter<Topic, TopicDTO, TopicRespo
                 AnswerStatus.findById(entity.getStatus()),
                 categoryConverter.entityToDTOResponse(entity.getCategory()),
                 subcategoryConverter.entityToDTOResponse(entity.getSubcategory()),
-                courseConverter.entityToDTOResponse(entity.getCourse()));
+                courseConverter.entityToDTOResponse(entity.getCourse()),
+                entity.getUser().getName()
+        );
     }
 }

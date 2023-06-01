@@ -19,6 +19,7 @@ public class TopicResponseDTO {
     private CategoryResponseDTO category;
     private SubcategoryResponseDTO subcategory;
     private CourseResponseDTO course;
+    private String user;
 //    private Answer answerSolution;
 //    private List<Answer> answers = new ArrayList<>();
 }

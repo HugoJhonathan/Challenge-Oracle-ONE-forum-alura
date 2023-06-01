@@ -16,7 +16,7 @@ public abstract class CrudService<E, ID> {
 
     public E findById(ID id) {
         return repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("id " + id + " not found!"));
+                .orElseThrow(() -> new EntityNotFoundException("Resource with id " + id + " not exist!"));
     }
 
     public E save(E entity) {
@@ -35,6 +35,10 @@ public abstract class CrudService<E, ID> {
         repository.deleteById(id);
     }
 
+    public void delete(E e) {
+        repository.delete(e);
+    }
+
     public boolean existsById(ID id) {
         return repository.existsById(id);
     }
@@ -42,5 +46,7 @@ public abstract class CrudService<E, ID> {
     public E getReferenceById(ID id) {
         return repository.getReferenceById(id);
     }
+
+    public abstract E getReferenceByIdIfExist(ID id);
 
 }

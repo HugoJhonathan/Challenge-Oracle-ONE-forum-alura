@@ -1,6 +1,7 @@
 package com.alura.forum.model.entity;
 
 import com.alura.forum.core.crud.CrudDomain;
+import com.alura.forum.model.entity.enums.AnswerStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -42,4 +43,12 @@ public class Topic implements CrudDomain<Long> {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "topic", cascade = CascadeType.ALL)
     private List<Answer> answers = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "fk_user")
+    private User user;
+
+    public void setAnswerSolution(Answer answerSolution) {
+        this.answerSolution = answerSolution;
+        setStatus(AnswerStatus.SOLUCIONADO.getId());
+    }
 }

@@ -3,11 +3,14 @@ package com.alura.forum.service;
 import com.alura.forum.core.crud.CrudService;
 import com.alura.forum.model.entity.Answer;
 import com.alura.forum.model.entity.Topic;
+import com.alura.forum.model.entity.User;
 import com.alura.forum.model.projections.TopicCompleteDTO;
 import com.alura.forum.model.projections.TopicSlimDTO;
 import com.alura.forum.repository.AnswerRepository;
 import com.alura.forum.repository.TopicRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -34,7 +37,9 @@ public class TopicService extends CrudService<Topic, Long> {
 
     @Override
     public Topic save(Topic entity) {
-        //entity.setCreatedAt(LocalDateTime.now());
+        entity.setCreatedAt(LocalDateTime.now());
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        entity.setUser(user);
         return super.save(entity);
     }
 
@@ -44,15 +49,20 @@ public class TopicService extends CrudService<Topic, Long> {
 
     public TopicCompleteDTO findComplete(Long id) {
         return topicRepository.findTopicCompleteById(id)
-                .orElseThrow(() -> new RuntimeException("Topic with id " + id + " not found!"));
+                .orElseThrow(() -> new EntityNotFoundException("Topic with id " + id + " not found!"));
     }
 
-
     public Answer addAnswerToPost(Answer answer, Long idPost) {
-        Topic topic = getReferenceById(idPost);
+        Topic topic = getReferenceByIdIfExist(idPost);
         answer.setTopic(topic);
         answer.setCreatedAt(LocalDateTime.now());
         return answerRepository.save(answer);
+    }
+
+    @Override
+    public Topic getReferenceByIdIfExist(Long id) {
+        if (!existsById(id)) throw new EntityNotFoundException("Topic with id " + id + " not exist!");
+        return getReferenceById(id);
     }
 
 }

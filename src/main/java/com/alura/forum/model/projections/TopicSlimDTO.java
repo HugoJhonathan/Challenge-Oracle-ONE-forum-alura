@@ -1,11 +1,12 @@
 package com.alura.forum.model.projections;
 
 import com.alura.forum.model.entity.enums.AnswerStatus;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.time.Instant;
 
-@JsonPropertyOrder({"id", "title", "createdAt", "status", "statusName", "category", "subcategory", "course"})
+@JsonPropertyOrder({"id", "title", "createdAt", "status", "statusName", "category", "subcategory", "course", "author"})
 public interface TopicSlimDTO {
     Long getId();
 
@@ -25,5 +26,7 @@ public interface TopicSlimDTO {
 
     CourseSlim getCourse();
 
+    @JsonProperty("author")
+    UserSlim getUser();
 
 }
