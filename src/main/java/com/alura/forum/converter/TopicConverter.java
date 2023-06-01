@@ -7,7 +7,7 @@ import com.alura.forum.model.entity.Category;
 import com.alura.forum.model.entity.Course;
 import com.alura.forum.model.entity.Subcategory;
 import com.alura.forum.model.entity.Topic;
-import com.alura.forum.model.entity.enums.AnswerStatus;
+import com.alura.forum.model.entity.enums.TopicStatus;
 import com.alura.forum.service.CategoryService;
 import com.alura.forum.service.CourseService;
 import com.alura.forum.service.SubcategoryService;
@@ -54,7 +54,7 @@ public class TopicConverter implements CrudConverter<Topic, TopicDTO, TopicRespo
                 entity.getTitle(),
                 entity.getMessage(),
                 entity.getCreatedAt(),
-                AnswerStatus.findById(entity.getStatus()),
+                TopicStatus.findById(entity.getStatus()),
                 categoryConverter.entityToDTOResponse(entity.getCategory()),
                 subcategoryConverter.entityToDTOResponse(entity.getSubcategory()),
                 courseConverter.entityToDTOResponse(entity.getCourse()),

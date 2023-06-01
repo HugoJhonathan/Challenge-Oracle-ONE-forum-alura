@@ -4,6 +4,7 @@ import com.alura.forum.core.crud.CrudService;
 import com.alura.forum.model.entity.Answer;
 import com.alura.forum.model.entity.Topic;
 import com.alura.forum.model.entity.User;
+import com.alura.forum.model.entity.enums.TopicStatus;
 import com.alura.forum.model.projections.TopicCompleteDTO;
 import com.alura.forum.model.projections.TopicSlimDTO;
 import com.alura.forum.repository.AnswerRepository;
@@ -56,6 +57,9 @@ public class TopicService extends CrudService<Topic, Long> {
         Topic topic = getReferenceByIdIfExist(idPost);
         answer.setTopic(topic);
         answer.setCreatedAt(LocalDateTime.now());
+        if (topicRepository.findStatusById(idPost) == 1) {
+            topic.setStatus(TopicStatus.NAO_SOLUCIONADO.getId());
+        }
         return answerRepository.save(answer);
     }
 

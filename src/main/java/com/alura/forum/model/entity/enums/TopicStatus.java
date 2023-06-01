@@ -8,15 +8,16 @@ import java.util.Objects;
 
 @AllArgsConstructor
 @Getter
-public enum AnswerStatus {
-    NAO_SOLUCIONADO(1, "Não solucionado"),
-    SOLUCIONADO(2, "Solucionado"),
-    FECHADO(3, "Fechado");
+public enum TopicStatus {
+    SEM_RESPOSTAS(1, "SEM RESPOSTAS"),
+    NAO_SOLUCIONADO(2, "NÃO SOLUCIONADO"),
+    SOLUCIONADO(3, "SOLUCIONADO"),
+    FECHADO(4, "FECHADO");
     private Integer id;
     private String name;
 
-    public static AnswerStatus findById(Integer id) {
-        return Arrays.stream(AnswerStatus.values())
+    public static TopicStatus findById(Integer id) {
+        return Arrays.stream(TopicStatus.values())
                 .filter(s -> Objects.equals(s.id, id))
                 .findFirst().orElse(null);
     }

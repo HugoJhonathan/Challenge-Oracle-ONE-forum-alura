@@ -1,6 +1,6 @@
 package com.alura.forum.model.dto.response;
 
-import com.alura.forum.model.entity.enums.AnswerStatus;
+import com.alura.forum.model.entity.enums.TopicStatus;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -15,7 +15,7 @@ public class TopicResponseDTO {
     private String title;
     private String message;
     private LocalDateTime createdAt;
-    private AnswerStatus status;
+    private TopicStatus status;
     private CategoryResponseDTO category;
     private SubcategoryResponseDTO subcategory;
     private CourseResponseDTO course;

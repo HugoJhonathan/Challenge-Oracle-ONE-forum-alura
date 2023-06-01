@@ -1,7 +1,7 @@
 package com.alura.forum.model.entity;
 
 import com.alura.forum.core.crud.CrudDomain;
-import com.alura.forum.model.entity.enums.AnswerStatus;
+import com.alura.forum.model.entity.enums.TopicStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -49,6 +49,6 @@ public class Topic implements CrudDomain<Long> {
 
     public void setAnswerSolution(Answer answerSolution) {
         this.answerSolution = answerSolution;
-        setStatus(AnswerStatus.SOLUCIONADO.getId());
+        setStatus(TopicStatus.SOLUCIONADO.getId());
     }
 }
