@@ -47,7 +47,7 @@ Ao final de nosso processo teremos uma API REST com as seguintes funcionalidades
 
 ## Resultado
 
-<img src="https://imgur.com/AEavqEN">
+<img src="https://i.imgur.com/AEavqEN.png">
 
 ### Principais endpoints
 
