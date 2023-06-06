@@ -55,8 +55,10 @@ public class TopicService extends CrudService<Topic, Long> {
 
     public Answer addAnswerToPost(Answer answer, Long idPost) {
         Topic topic = getReferenceByIdIfExist(idPost);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         answer.setTopic(topic);
         answer.setCreatedAt(LocalDateTime.now());
+        answer.setAuthor(user);
         if (topicRepository.findStatusById(idPost) == 1) {
             topic.setStatus(TopicStatus.NAO_SOLUCIONADO.getId());
         }

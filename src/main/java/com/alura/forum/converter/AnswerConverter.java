@@ -3,6 +3,7 @@ package com.alura.forum.converter;
 import com.alura.forum.core.crud.CrudConverter;
 import com.alura.forum.model.dto.request.AnswerDTO;
 import com.alura.forum.model.dto.response.AnswerResponseDTO;
+import com.alura.forum.model.dto.response.UserResponseDTO;
 import com.alura.forum.model.entity.Answer;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +19,6 @@ public class AnswerConverter implements CrudConverter<Answer, AnswerDTO, AnswerR
 
     @Override
     public AnswerResponseDTO entityToDTOResponse(Answer entity) {
-        return new AnswerResponseDTO(entity.getId(), entity.getMessage(), entity.getCreatedAt());
+        return new AnswerResponseDTO(entity.getId(), entity.getMessage(), entity.getCreatedAt(), new UserResponseDTO(entity.getAuthor().getName()));
     }
 }

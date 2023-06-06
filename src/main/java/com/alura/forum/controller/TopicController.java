@@ -4,9 +4,11 @@ import com.alura.forum.converter.AnswerConverter;
 import com.alura.forum.core.crud.CrudController;
 import com.alura.forum.model.dto.request.AnswerDTO;
 import com.alura.forum.model.dto.request.TopicDTO;
+import com.alura.forum.model.dto.response.AnswerResponseDTO;
 import com.alura.forum.model.dto.response.TopicResponseDTO;
 import com.alura.forum.model.entity.Answer;
 import com.alura.forum.model.entity.Topic;
+import com.alura.forum.model.projections.AnswerSlim;
 import com.alura.forum.model.projections.TopicCompleteDTO;
 import com.alura.forum.model.projections.TopicSlimDTO;
 import com.alura.forum.service.AnswerService;
@@ -39,16 +41,17 @@ public class TopicController extends CrudController<Topic, Long, TopicDTO, Topic
     }
 
     @GetMapping("/{id}/answers")
-    public ResponseEntity<Page<Answer>> findAnswersByTopic(@PathVariable("id") Long id, Pageable pageable) {
-        return ResponseEntity.ok(answerService.findAllByTopicId(id, pageable));
+    public ResponseEntity<Page<AnswerSlim>> findAnswersByTopic(@PathVariable("id") Long id, Pageable pageable) {
+        Page<AnswerSlim> answers = answerService.findAllByTopicId(id, pageable);
+        return ResponseEntity.ok(answers);
     }
 
     @Transactional
     @PostMapping("/{id}/answers")
-    public ResponseEntity<Answer> addAnswerToPost(@PathVariable("id") Long id, @RequestBody @Valid AnswerDTO answerDTO) {
+    public ResponseEntity<AnswerResponseDTO> addAnswerToPost(@PathVariable("id") Long id, @RequestBody @Valid AnswerDTO answerDTO) {
         Answer answer = answerConverter.dtoCadToEntity(answerDTO);
         Answer answer1 = topicService.addAnswerToPost(answer, id);
-        return ResponseEntity.ok(answer1);
+        return ResponseEntity.ok(answerConverter.entityToDTOResponse(answer1));
     }
 
 

@@ -23,4 +23,7 @@ public class Answer implements CrudDomain<Long> {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_topic")
     private Topic topic;
+    @ManyToOne
+    @JoinColumn(name = "fk_author")
+    private User author;
 }

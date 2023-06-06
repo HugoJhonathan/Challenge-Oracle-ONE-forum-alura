@@ -8,4 +8,6 @@ public interface AnswerSlim {
     String getMessage();
 
     LocalDateTime getCreatedAt();
+
+    UserSlim getAuthor();
 }

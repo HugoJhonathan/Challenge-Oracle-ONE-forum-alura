@@ -4,6 +4,7 @@ import com.alura.forum.core.crud.CrudService;
 import com.alura.forum.model.entity.Answer;
 import com.alura.forum.model.entity.Topic;
 import com.alura.forum.model.entity.User;
+import com.alura.forum.model.projections.AnswerSlim;
 import com.alura.forum.repository.AnswerRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class AnswerService extends CrudService<Answer, Long> {
         return super.save(entity);
     }
 
-    public Page<Answer> findAllByTopicId(Long id, Pageable pageable) {
+    public Page<AnswerSlim> findAllByTopicId(Long id, Pageable pageable) {
         return repository.findAllByTopicId(id, pageable);
     }
 
