@@ -47,6 +47,10 @@ Ao final de nosso processo teremos uma API REST com as seguintes funcionalidades
 
 ## Resultado
 
+
+https://github.com/HugoJhonathan/Challenge-Oracle-ONE-forum-alura/assets/40052440/2236901e-b872-4fde-9afd-018516d9f4ba
+
+
 <img src="https://i.imgur.com/AEavqEN.png">
 
 ### Principais endpoints
